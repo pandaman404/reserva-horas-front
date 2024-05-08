@@ -1,5 +1,14 @@
+import Header from './components/Header';
+import PageLayout from './components/PageLayout';
+
 const App = () => {
-    return <div>Hola</div>;
+    return (
+        <>
+            <Header />
+            {/* <PageLayout>
+            </PageLayout> */}
+        </>
+    );
 };
 
 export default App;
