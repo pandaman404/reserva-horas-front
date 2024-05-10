@@ -1,12 +1,13 @@
 import Logo from './Logo';
-import PageLayout from '../layout/PageLayout';
+import Navbar from './NavBar';
 
 const Header = () => {
     return (
-        <header className='h-48 w-full bg-header bg-cover bg-center lg:h-72'>
-            <PageLayout>
+        <header className='relative flex h-48 w-full bg-header bg-cover bg-center lg:h-72'>
+            <div className='container mx-auto flex h-full flex-col justify-between px-3 xl:px-0'>
                 <Logo />
-            </PageLayout>
+                <Navbar />
+            </div>
         </header>
     );
 };

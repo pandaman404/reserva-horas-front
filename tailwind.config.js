@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+import daisyui from 'daisyui';
+
+module.exports = {
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     theme: {
         container: {
@@ -16,11 +18,6 @@ export default {
                 logo: ['Cinzel'],
                 body: ['Lato'],
             },
-            colors: {
-                'ui-primary': 'rgb(42, 207, 207)',
-                'ui-black': 'rgb(53, 50, 62)',
-                'ui-gray': 'rgb(243, 244, 246)',
-            },
             spacing: {
                 42: '170px',
             },
@@ -29,5 +26,8 @@ export default {
             },
         },
     },
-    plugins: [],
+    plugins: [daisyui],
+    daisyui: {
+        themes: ['cupcake'],
+    },
 };
