@@ -7,6 +7,51 @@ type FormFields = {
     especialidad: string;
 };
 
+const centrosSalud = [
+    {
+        id: 1,
+        nombre: 'Raccoon City',
+    },
+    {
+        id: 2,
+        nombre: 'Los Santos',
+    },
+    {
+        id: 3,
+        nombre: 'Pueblo Paleta',
+    },
+];
+
+const prevision = [
+    {
+        id: 1,
+        nombre: 'Fonasa',
+    },
+    {
+        id: 2,
+        nombre: 'Particular',
+    },
+    {
+        id: 3,
+        nombre: 'Isapre',
+    },
+];
+
+const especialidad = [
+    {
+        id: 1,
+        nombre: 'Medicina General',
+    },
+    {
+        id: 2,
+        nombre: 'Oftalmologia',
+    },
+    {
+        id: 3,
+        nombre: 'Radiologia',
+    },
+];
+
 const ReservarHoraForm = () => {
     const {
         register,
@@ -21,7 +66,7 @@ const ReservarHoraForm = () => {
 
     return (
         <form
-            className='mx-auto flex max-w-3xl flex-col gap-6 rounded-md border p-5 md:p-10 lg:p-10'
+            className='mx-auto flex max-w-3xl flex-col gap-6 rounded-md border p-5 md:p-10'
             onSubmit={handleSubmit(onSubmit)}
         >
             <label className='input input-bordered flex items-center gap-2 text-sm'>
@@ -41,41 +86,53 @@ const ReservarHoraForm = () => {
             <select
                 className='select select-bordered w-full'
                 {...register('centroSalud')}
-                defaultValue={'DEFAULT'}
+                defaultValue='DEFAULT'
             >
                 <option disabled value='DEFAULT'>
                     Centro de Salud
                 </option>
-                <option>Raccoon City</option>
-                <option>Los Santos</option>
-                <option>Pueblo Paleta</option>
+                {centrosSalud.map(({ id, nombre }) => {
+                    return (
+                        <option key={id} value={nombre}>
+                            {nombre}
+                        </option>
+                    );
+                })}
             </select>
             <select
                 className='select select-bordered w-full'
                 {...register('prevision')}
-                defaultValue={'DEFAULT'}
+                defaultValue='DEFAULT'
             >
                 <option disabled value='DEFAULT'>
                     Previsión
                 </option>
-                <option>Fonasa</option>
-                <option>Particular</option>
-                <option>Isapre</option>
+                {prevision.map(({ id, nombre }) => {
+                    return (
+                        <option key={id} value={nombre}>
+                            {nombre}
+                        </option>
+                    );
+                })}
             </select>
             <select
                 className='select select-bordered w-full'
                 {...register('especialidad')}
-                defaultValue={'DEFAULT'}
+                defaultValue='DEFAULT'
             >
                 <option disabled value='DEFAULT'>
                     Especialidad
                 </option>
-                <option>Medicina General</option>
-                <option>Oftalmologia</option>
-                <option>Radiologia</option>
+                {especialidad.map(({ id, nombre }) => {
+                    return (
+                        <option key={id} value={nombre}>
+                            {nombre}
+                        </option>
+                    );
+                })}
             </select>
             <button
-                className='btn btn-primary lg:btn-wide col-span-2 w-full place-self-center'
+                className='btn btn-primary col-span-2 w-full place-self-center lg:btn-wide'
                 disabled={isSubmitting}
                 type='submit'
             >
