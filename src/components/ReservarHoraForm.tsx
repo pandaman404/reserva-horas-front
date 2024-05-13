@@ -1,4 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import TextField from './TextField';
+import Select from './Select';
+import SubmitButton from './SubmitButton';
 
 type FormFields = {
     rut: string;
@@ -10,45 +13,45 @@ type FormFields = {
 const centrosSalud = [
     {
         id: 1,
-        nombre: 'Raccoon City',
+        name: 'Raccoon City',
     },
     {
         id: 2,
-        nombre: 'Los Santos',
+        name: 'Los Santos',
     },
     {
         id: 3,
-        nombre: 'Pueblo Paleta',
+        name: 'Pueblo Paleta',
     },
 ];
 
 const prevision = [
     {
         id: 1,
-        nombre: 'Fonasa',
+        name: 'Fonasa',
     },
     {
         id: 2,
-        nombre: 'Particular',
+        name: 'Particular',
     },
     {
         id: 3,
-        nombre: 'Isapre',
+        name: 'Isapre',
     },
 ];
 
 const especialidad = [
     {
         id: 1,
-        nombre: 'Medicina General',
+        name: 'Medicina General',
     },
     {
         id: 2,
-        nombre: 'Oftalmologia',
+        name: 'Oftalmologia',
     },
     {
         id: 3,
-        nombre: 'Radiologia',
+        name: 'Radiologia',
     },
 ];
 
@@ -66,82 +69,39 @@ const ReservarHoraForm = () => {
 
     return (
         <form
-            className='mx-auto flex max-w-3xl flex-col gap-6 rounded-md border p-5 md:p-10'
+            className='mx-auto flex max-w-3xl flex-col gap-8 rounded-md border p-5 md:p-10'
             onSubmit={handleSubmit(onSubmit)}
         >
-            <label className='input input-bordered flex items-center gap-2 text-sm'>
-                Rut
-                <input
-                    type='text'
-                    className='grow'
-                    placeholder='1111111-1'
-                    {...register('rut', {
-                        required: 'Rut es requerido',
-                    })}
-                />
-            </label>
-            {/* {errors.rut && (
-                <div className='text-error'>{errors.rut.message}</div>
-            )} */}
-            <select
-                className='select select-bordered w-full'
-                {...register('centroSalud')}
-                defaultValue='DEFAULT'
-            >
-                <option disabled value='DEFAULT'>
-                    Centro de Salud
-                </option>
-                {centrosSalud.map(({ id, nombre }) => {
-                    return (
-                        <option key={id} value={nombre}>
-                            {nombre}
-                        </option>
-                    );
-                })}
-            </select>
-            <select
-                className='select select-bordered w-full'
-                {...register('prevision')}
-                defaultValue='DEFAULT'
-            >
-                <option disabled value='DEFAULT'>
-                    Previsión
-                </option>
-                {prevision.map(({ id, nombre }) => {
-                    return (
-                        <option key={id} value={nombre}>
-                            {nombre}
-                        </option>
-                    );
-                })}
-            </select>
-            <select
-                className='select select-bordered w-full'
-                {...register('especialidad')}
-                defaultValue='DEFAULT'
-            >
-                <option disabled value='DEFAULT'>
-                    Especialidad
-                </option>
-                {especialidad.map(({ id, nombre }) => {
-                    return (
-                        <option key={id} value={nombre}>
-                            {nombre}
-                        </option>
-                    );
-                })}
-            </select>
-            <button
-                className='btn btn-primary col-span-2 w-full place-self-center lg:btn-wide'
-                disabled={isSubmitting}
-                type='submit'
-            >
-                {isSubmitting ? (
-                    <span className='loading loading-spinner'></span>
-                ) : (
-                    'Continuar'
-                )}
-            </button>
+            <TextField
+                type='text'
+                name='rut'
+                placeholder='111111-1'
+                register={register}
+                errors={errors}
+            />
+            <Select
+                name='centroSalud'
+                placeholder='Centro de salud'
+                register={register}
+                errors={errors}
+                options={centrosSalud}
+            />
+            <Select
+                name='prevision'
+                placeholder='Previsión'
+                register={register}
+                errors={errors}
+                options={prevision}
+            />
+            <Select
+                name='especialidad'
+                placeholder='Especialidad'
+                register={register}
+                errors={errors}
+                options={especialidad}
+            />
+
+            <SubmitButton text={'Continuar'} isSubmitting={isSubmitting} />
         </form>
     );
 };
