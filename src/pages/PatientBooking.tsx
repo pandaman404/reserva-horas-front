@@ -1,32 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Reserva } from '../types';
 import { PatientForm } from '../components/PatientForm';
 import { PatientBookingPicker } from '../components/PatientBookingPicker';
 import { ConfirmBooking } from '../components/ConfirmBooking';
+import { useHandleBooking } from '../hooks/useHandleBooking';
 
 export const PatientBooking = () => {
-  const [step, setStep] = useState(1);
-  const [booking, setBooking] = useState<Reserva>({
-    rut: '',
-    email: '',
-    prevision: '',
-    medicalCenter: '',
-    area: '',
-    doctor: '',
-    appointment: null,
-  });
-
-  const fillBookingData = (data: any) => {
-    setBooking({ ...booking, ...data });
-  };
-
-  const handleStep = (step: number) => {
-    setStep(step);
-  };
-
-  useEffect(() => {
-    console.log(booking);
-  }, [booking]);
+  const { booking, fillBookingData, step, handleStep, createNewBooking } =
+    useHandleBooking();
 
   return (
     <main className='flex-1'>
@@ -45,7 +24,11 @@ export const PatientBooking = () => {
             handleStep={handleStep}
           />
         ) : (
-          <ConfirmBooking />
+          <ConfirmBooking
+            booking={booking}
+            createNewBooking={createNewBooking}
+            handleStep={handleStep}
+          />
         )}
       </div>
     </main>

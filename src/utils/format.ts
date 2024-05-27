@@ -1,3 +1,4 @@
+import { getHours, getMinutes } from 'date-fns';
 import { format } from 'date-fns/format';
 import { es } from 'date-fns/locale';
 
@@ -5,10 +6,17 @@ export const capitalizeText = (text: string) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
-export const formatDate = (date: Date) => {
+export const getValuesFromDate = (date: Date) => {
   const dayOfWeek = format(date, 'EEEE', { locale: es });
   const dayOfMonth = format(date, 'd', { locale: es });
   const month = format(date, 'MMMM', { locale: es });
-
-  return `${capitalizeText(dayOfWeek)} ${dayOfMonth} de ${capitalizeText(month)}`;
+  const year = format(date, 'yyyy', { locale: es });
+  const hourAndMinutes = `${getHours(date)}:${getMinutes(date) <= 9 ? '0' + getMinutes(date) : getMinutes(date)}`;
+  return {
+    dayOfWeek,
+    dayOfMonth,
+    month,
+    year,
+    hourAndMinutes,
+  };
 };

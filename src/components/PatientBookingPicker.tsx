@@ -1,6 +1,6 @@
 import { AvailableHoursCard } from './AvailableHoursCard';
 import { Calendar } from './Calendar';
-import { formatDate } from '../utils/format';
+import { getValuesFromDate } from '../utils/format';
 import { v4 as uuidv4 } from 'uuid';
 import { useBookingCalendar } from '../hooks/useBookingCalendar';
 
@@ -31,7 +31,7 @@ export const PatientBookingPicker = ({
       {selectedCalendarDay && (
         <div className='w-full'>
           <h2 className='w-full rounded bg-primary px-2 py-3 text-center text-lg font-semibold uppercase tracking-widest text-base-100'>
-            {formatDate(selectedCalendarDay)}
+            {`${getValuesFromDate(selectedCalendarDay).dayOfMonth} de ${getValuesFromDate(selectedCalendarDay).month}`}
           </h2>
           {availableAppointments.map((appointments) => {
             return (

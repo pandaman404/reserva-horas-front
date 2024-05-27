@@ -18,14 +18,10 @@ body {
   }
 
   .selected-day {
-    @apply bg-yellow-500 !important;
+    @apply bg-accent text-white !important;
   }
 
   .available-day {
     @apply bg-primary text-white;
-  }
-
-  .today-day {
-    @apply bg-accent text-white;
   }
 }

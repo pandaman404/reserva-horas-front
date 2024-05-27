@@ -1,4 +1,4 @@
-export interface Reserva {
+export interface Booking {
   rut: string;
   email: string;
   prevision: string;

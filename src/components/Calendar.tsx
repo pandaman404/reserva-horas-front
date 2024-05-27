@@ -30,7 +30,6 @@ export const Calendar = ({
       onDayClick={handleDayClick}
       classNames={{
         day_selected: 'selected-day',
-        day_today: 'today-day',
         day_disabled: 'calendar-btn_disabled',
         button: 'calendar-btn',
         caption_label: 'capitalize font-semibold',
