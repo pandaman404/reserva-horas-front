@@ -5,5 +5,27 @@
 @tailwind utilities;
 
 body {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
+}
+
+@layer base {
+  .calendar-btn {
+    @apply cursor-pointer;
+  }
+
+  .calendar-btn_disabled {
+    @apply pointer-events-none text-gray-300;
+  }
+
+  .selected-day {
+    @apply bg-yellow-500 !important;
+  }
+
+  .available-day {
+    @apply bg-primary text-white;
+  }
+
+  .today-day {
+    @apply bg-accent text-white;
+  }
 }
