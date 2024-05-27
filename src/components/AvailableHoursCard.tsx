@@ -22,12 +22,10 @@ export const AvailableHoursCard = ({
   return (
     <article className='grid grid-cols-2 place-items-center border-b border-gray-300 py-5'>
       <div className='col-span-2 mb-5 flex flex-col items-center md:col-span-1 md:mb-0'>
-        <div className='h-24 w-24 overflow-hidden rounded-full border-4 border-gray-300'>
-          <img
-            src={doctorImage}
-            className='h-full w-full object-cover'
-            alt='Doctor'
-          />
+        <div className='avatar'>
+          <div className='w-24 rounded-full ring ring-gray-300 ring-offset-2 ring-offset-base-100'>
+            <img src={doctorImage} alt={doctorName} />
+          </div>
         </div>
         <h4 className='font-semibold'>Dr.{doctorName}</h4>
         <h5>{area}</h5>

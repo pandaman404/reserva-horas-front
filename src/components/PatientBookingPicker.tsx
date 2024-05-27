@@ -3,6 +3,7 @@ import { Calendar } from './Calendar';
 import { getValuesFromDate } from '../utils/format';
 import { v4 as uuidv4 } from 'uuid';
 import { useBookingCalendar } from '../hooks/useBookingCalendar';
+import { StepBackButton } from './StepBackButton';
 
 interface PatientBookingPickerProps {
   fillBookingData: (data: any) => void;
@@ -22,12 +23,15 @@ export const PatientBookingPicker = ({
   } = useBookingCalendar(fillBookingData, handleStep);
 
   return (
-    <div className='mx-auto flex flex-col items-center gap-5 lg:flex-row lg:items-start lg:gap-10'>
-      <Calendar
-        selectedCalendarDay={selectedCalendarDay}
-        handleSelectedCalendarDay={handleSelectedCalendarDay}
-        availableDays={availableDays}
-      />
+    <div className='mx-auto flex w-full flex-col items-center gap-5 lg:flex-row lg:items-start lg:gap-10'>
+      <div>
+        <StepBackButton previousStep={1} handleStep={handleStep} />
+        <Calendar
+          selectedCalendarDay={selectedCalendarDay}
+          handleSelectedCalendarDay={handleSelectedCalendarDay}
+          availableDays={availableDays}
+        />
+      </div>
       {selectedCalendarDay && (
         <div className='w-full'>
           <h2 className='w-full rounded bg-primary px-2 py-3 text-center text-lg font-semibold uppercase tracking-widest text-base-100'>

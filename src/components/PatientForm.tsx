@@ -79,7 +79,7 @@ export const PatientForm = ({
 
   return (
     <form
-      className='mx-auto flex max-w-3xl flex-col gap-8 rounded-md border p-5 md:p-10'
+      className='mx-auto flex w-full max-w-3xl flex-col gap-8 rounded-md border p-5 md:p-10'
       onSubmit={handleSubmit(onSubmit)}
     >
       <TextField

@@ -1,6 +1,7 @@
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { Booking } from '../types';
 import { getValuesFromDate } from '../utils/format';
+import { StepBackButton } from './StepBackButton';
 
 interface ConfirmBookingProps {
   booking: Booking;
@@ -50,12 +51,7 @@ export const ConfirmBooking = ({
         </p>
       </div>
       <div className='flex w-full justify-between'>
-        <button
-          className='uppercase text-secondary'
-          onClick={() => handleStep(2)}
-        >
-          &lt; Volver
-        </button>
+        <StepBackButton previousStep={2} handleStep={handleStep} />
         <button
           className='btn btn-primary col-span-2  place-self-center rounded-full lg:btn-wide'
           onClick={() => createNewBooking(booking)}
