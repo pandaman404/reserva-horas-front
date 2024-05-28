@@ -29,6 +29,20 @@ module.exports = {
   },
   plugins: [daisyui],
   daisyui: {
-    themes: ['cupcake', 'nord'],
+    themes: [
+      {
+        umbrella: {
+          'primary': '#3D7DDA',
+          'secondary': '#6194DE',
+          'accent': '#B9CAD7',
+          'neutral': '#3D7DDA',
+          'base-100': '#FFFFFF',
+          'info': '#9EAEC0',
+          'success': '#216E4E',
+          'warning': '#F9B443',
+          'error': '#CA2128',
+        },
+      },
+    ],
   },
 };

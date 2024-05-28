@@ -22,12 +22,12 @@ export const AvailableHoursCard = ({
   return (
     <article className='grid grid-cols-2 place-items-center border-b border-gray-300 py-5'>
       <div className='col-span-2 mb-5 flex flex-col items-center md:col-span-1 md:mb-0'>
-        <div className='avatar'>
+        <div className='avatar mb-2'>
           <div className='w-24 rounded-full ring ring-gray-300 ring-offset-2 ring-offset-base-100'>
             <img src={doctorImage} alt={doctorName} />
           </div>
         </div>
-        <h4 className='font-semibold'>Dr.{doctorName}</h4>
+        <h4 className='font-semibold'>Dr. {doctorName}</h4>
         <h5>{area}</h5>
       </div>
       <div className='col-span-2 flex w-full flex-col gap-2 md:col-span-1 md:col-start-2 md:row-start-1'>
@@ -35,7 +35,7 @@ export const AvailableHoursCard = ({
           return (
             <button
               key={uuidv4()}
-              className='flex w-full justify-between rounded bg-[#009FE3] px-5 py-2 text-base-100'
+              className='flex w-full justify-between rounded bg-secondary px-5 py-2 text-base-100'
               onClick={() =>
                 handleSelectedAppointment({ doctor: doctorName, day, hour })
               }

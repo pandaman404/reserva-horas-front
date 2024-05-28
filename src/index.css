@@ -24,4 +24,9 @@ body {
   .available-day {
     @apply bg-primary text-white;
   }
+
+  .btn-primary,
+  .step-primary::after {
+    @apply text-white !important;
+  }
 }
