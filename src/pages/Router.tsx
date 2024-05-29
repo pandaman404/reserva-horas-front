@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PatientBooking } from './PatientBooking';
+import { CancelBooking } from './CancelBooking';
 
-import AnularHoraPage from './AnularHoraPage';
 import NotFoundPage from './NotFoundPage';
 import PacienteLayout from '../layout/PacienteLayout';
 
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/anular-hora',
-        element: <AnularHoraPage />,
+        element: <CancelBooking />,
       },
     ],
   },
