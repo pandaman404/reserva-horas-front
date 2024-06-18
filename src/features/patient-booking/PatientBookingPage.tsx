@@ -1,10 +1,10 @@
-import { PatientForm } from '../components/PatientForm';
-import { PatientBookingPicker } from '../components/PatientBookingPicker';
-import { ConfirmBooking } from '../components/ConfirmBooking';
-import { useHandleBooking } from '../hooks/useHandleBooking';
-import { BookingSteps } from '../components/BookingSteps';
+import { PatientForm } from '@/features/patient-booking/components/PatientForm';
+import { PatientBookingPicker } from '@/features/patient-booking/components/PatientBookingPicker';
+import { ConfirmBooking } from '@/features/patient-booking/components/ConfirmBooking';
+import { BookingSteps } from '@/features/patient-booking/components/BookingSteps';
+import { useHandleBooking } from '@/features/patient-booking/hooks/useHandleBooking';
 
-export const PatientBooking = () => {
+const PatientBookingPage = () => {
   const { booking, fillBookingData, step, handleStep, createNewBooking } =
     useHandleBooking();
 
@@ -36,3 +36,5 @@ export const PatientBooking = () => {
     </main>
   );
 };
+
+export default PatientBookingPage;

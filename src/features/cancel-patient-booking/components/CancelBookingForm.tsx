@@ -1,6 +1,6 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import TextField from './TextField';
-import SubmitButton from './SubmitButton';
+import TextField from '@/components/forms/TextField';
+import SubmitButton from '@/components/forms/SubmitButton';
 
 type FormFields = {
   rut: string;

@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import TextField from './TextField';
-import Select from './Select';
-import SubmitButton from './SubmitButton';
+import Select from '@/components/forms/Select';
+import SubmitButton from '@/components/forms/SubmitButton';
+import TextField from '@/components/forms/TextField';
 
 interface PatientFormProps {
   fillBookingData: (data: any) => void;

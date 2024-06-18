@@ -1,8 +1,8 @@
-import { BookingCard } from '../components/BookingCard';
-import { BookingNotFound } from '../components/BookingNotFound';
-import { CancelBookingForm } from '../components/CancelBookingForm';
+import { BookingCard } from '@/features/cancel-patient-booking/components/BookingCard';
+// import { BookingNotFound } from '@/features/cancel-patient-booking/components/BookingNotFound';
+import { CancelBookingForm } from '@/features/cancel-patient-booking/components/CancelBookingForm';
 
-export const CancelBooking = () => {
+const CancelBookingPage = () => {
   return (
     <main className='flex-1'>
       <h2 className='relative bg-neutral p-4 text-center text-lg font-semibold uppercase tracking-widest text-white'>
@@ -19,3 +19,5 @@ export const CancelBooking = () => {
     </main>
   );
 };
+
+export default CancelBookingPage;

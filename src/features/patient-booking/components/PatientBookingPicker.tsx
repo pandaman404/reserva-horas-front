@@ -1,9 +1,9 @@
-import { AvailableHoursCard } from './AvailableHoursCard';
-import { Calendar } from './Calendar';
-import { getValuesFromDate } from '../utils/format';
 import { v4 as uuidv4 } from 'uuid';
-import { useBookingCalendar } from '../hooks/useBookingCalendar';
-import { StepBackButton } from './StepBackButton';
+import { getValuesFromDate } from '@/utils/format';
+import { AvailableHoursCard } from '@/features/patient-booking/components/AvailableHoursCard';
+import { Calendar } from '@/features/patient-booking/components/Calendar';
+import { StepBackButton } from '@/features/patient-booking/components/StepBackButton';
+import { useBookingCalendar } from '@/features/patient-booking/hooks/useBookingCalendar';
 
 interface PatientBookingPickerProps {
   fillBookingData: (data: any) => void;

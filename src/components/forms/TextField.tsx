@@ -5,7 +5,7 @@ import {
   Path,
   FieldErrors,
 } from 'react-hook-form';
-import { capitalizeText } from '../utils/format';
+import { capitalizeText } from '@/utils/format';
 
 type TextFieldProps<T extends FieldValues> = {
   type: HTMLInputTypeAttribute;

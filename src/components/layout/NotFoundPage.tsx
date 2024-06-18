@@ -1,6 +1,6 @@
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import notFound from '../assets/error404.svg';
+import Header from '@/components/ui/Header';
+import Footer from '@/components/ui/Footer';
+import notFound from '@/assets/error404.svg';
 
 const NotFoundPage = () => {
   return (

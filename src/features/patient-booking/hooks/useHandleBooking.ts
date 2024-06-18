@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Booking } from '../types';
+import { Booking } from '@/@types/booking';
 
 export function useHandleBooking() {
   const [step, setStep] = useState(1);
