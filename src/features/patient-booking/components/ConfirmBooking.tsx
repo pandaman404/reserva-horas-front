@@ -1,9 +1,9 @@
 import { CalendarIcon } from '@heroicons/react/24/outline';
-import { Booking } from '@/@types/booking';
 import { getValuesFromDate } from '@/utils/format';
 import { StepBackButton } from '@/features/patient-booking/components/StepBackButton';
+import { Booking } from '@/@types/booking';
 
-interface ConfirmBookingProps {
+export interface ConfirmBookingProps {
   booking: Booking;
   createNewBooking: (booking: Booking) => void;
   handleStep: (step: number) => void;

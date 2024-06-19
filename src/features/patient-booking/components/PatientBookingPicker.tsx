@@ -4,9 +4,10 @@ import { AvailableHoursCard } from '@/features/patient-booking/components/Availa
 import { Calendar } from '@/features/patient-booking/components/Calendar';
 import { StepBackButton } from '@/features/patient-booking/components/StepBackButton';
 import { useBookingCalendar } from '@/features/patient-booking/hooks/useBookingCalendar';
+import { Booking } from '@/@types/booking';
 
 interface PatientBookingPickerProps {
-  fillBookingData: (data: any) => void;
+  fillBookingData: (data: Partial<Booking>) => void;
   handleStep: (step: number) => void;
 }
 
@@ -37,10 +38,10 @@ export const PatientBookingPicker = ({
           <h2 className='w-full rounded bg-primary px-2 py-3 text-center text-lg font-semibold uppercase tracking-widest text-base-100'>
             {`${getValuesFromDate(selectedCalendarDay).dayOfMonth} de ${getValuesFromDate(selectedCalendarDay).month}`}
           </h2>
-          {availableAppointments.map((appointments) => {
+          {availableAppointments.map((appointment) => {
             return (
               <AvailableHoursCard
-                {...appointments}
+                {...appointment}
                 handleSelectedAppointment={handleSelectedAppointment}
                 key={uuidv4()}
               />

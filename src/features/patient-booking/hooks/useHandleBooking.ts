@@ -13,15 +13,15 @@ export function useHandleBooking() {
     appointment: new Date(),
   });
 
-  const fillBookingData = (data: any) => {
+  const fillBookingData = (data: Partial<Booking>): void => {
     setBooking({ ...booking, ...data });
   };
 
-  const handleStep = (step: number) => {
+  const handleStep = (step: number): void => {
     setStep(step);
   };
 
-  const createNewBooking = async (booking: Booking) => {
+  const createNewBooking = async (booking: Booking): Promise<void> => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.log(booking);
   };

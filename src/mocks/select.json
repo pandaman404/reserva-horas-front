@@ -1,0 +1,35 @@
+{
+  "centrosSalud": [
+    {
+      "name": "Raccoon City"
+    },
+    {
+      "name": "Los Santos"
+    },
+    {
+      "name": "Pueblo Paleta"
+    }
+  ],
+  "prevision": [
+    {
+      "name": "Fonasa"
+    },
+    {
+      "name": "Particular"
+    },
+    {
+      "name": "Isapre"
+    }
+  ],
+  "especialidad": [
+    {
+      "name": "Medicina General"
+    },
+    {
+      "name": "Oftalmologia"
+    },
+    {
+      "name": "Radiologia"
+    }
+  ]
+}

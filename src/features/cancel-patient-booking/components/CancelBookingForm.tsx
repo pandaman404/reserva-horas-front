@@ -1,9 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import TextField from '@/components/forms/TextField';
 import SubmitButton from '@/components/forms/SubmitButton';
+import { Rut } from '@/@types/user';
 
 type FormFields = {
-  rut: string;
+  rut: Rut;
 };
 
 export const CancelBookingForm = () => {

@@ -2,7 +2,7 @@ import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
 import { es } from 'date-fns/locale';
 import 'react-day-picker/dist/style.css';
 
-interface CalendarProps {
+export interface CalendarProps {
   availableDays: Date[];
   selectedCalendarDay: Date;
   handleSelectedCalendarDay: (day: Date) => void;

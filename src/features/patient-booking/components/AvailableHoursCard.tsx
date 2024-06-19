@@ -1,13 +1,8 @@
+import { Appointment } from '@/@types/booking';
 import { v4 as uuidv4 } from 'uuid';
 
-interface AvailableHoursCardProps {
-  doctorName: string;
-  doctorImage: string;
-  area: string;
-  medicalCenter: string;
-  day: Date;
-  hours: string[];
-  handleSelectedAppointment: (data: any) => void;
+interface AvailableHoursCardProps extends Appointment {
+  handleSelectedAppointment: (data: Partial<Appointment>) => void;
 }
 
 export const AvailableHoursCard = ({
@@ -16,9 +11,10 @@ export const AvailableHoursCard = ({
   area,
   medicalCenter,
   day,
-  hours,
+  availableHours,
   handleSelectedAppointment,
 }: AvailableHoursCardProps) => {
+  console.log(availableHours);
   return (
     <article className='grid grid-cols-2 place-items-center border-b border-gray-300 py-5'>
       <div className='col-span-2 mb-5 flex flex-col items-center md:col-span-1 md:mb-0'>
@@ -31,17 +27,21 @@ export const AvailableHoursCard = ({
         <h5>{area}</h5>
       </div>
       <div className='col-span-2 flex w-full flex-col gap-2 md:col-span-1 md:col-start-2 md:row-start-1'>
-        {hours.map((hour: string) => {
+        {availableHours.map((availableHour: string) => {
           return (
             <button
               key={uuidv4()}
               className='flex w-full justify-between rounded bg-secondary px-5 py-2 text-base-100'
               onClick={() =>
-                handleSelectedAppointment({ doctor: doctorName, day, hour })
+                handleSelectedAppointment({
+                  doctorName,
+                  day,
+                  selectedHour: availableHour,
+                })
               }
             >
               <span>{medicalCenter}</span>
-              <span className='font-bold'>{hour}</span>
+              <span className='font-bold'>{availableHour}</span>
             </button>
           );
         })}

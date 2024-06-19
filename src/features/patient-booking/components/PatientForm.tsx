@@ -2,64 +2,22 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import Select from '@/components/forms/Select';
 import SubmitButton from '@/components/forms/SubmitButton';
 import TextField from '@/components/forms/TextField';
+import data from '@/mocks/select.json';
+import { Rut } from '@/@types/user';
+import { Booking } from '@/@types/booking';
 
-interface PatientFormProps {
-  fillBookingData: (data: any) => void;
-  handleStep: (step: number) => void;
-}
-
-type FormFields = {
-  rut: string;
+type PatientFormFields = {
+  rut: Rut;
   email: string;
   prevision: string;
   medicalCenter: string;
   area: string;
 };
 
-const centrosSalud = [
-  {
-    id: 1,
-    name: 'Raccoon City',
-  },
-  {
-    id: 2,
-    name: 'Los Santos',
-  },
-  {
-    id: 3,
-    name: 'Pueblo Paleta',
-  },
-];
-
-const prevision = [
-  {
-    id: 1,
-    name: 'Fonasa',
-  },
-  {
-    id: 2,
-    name: 'Particular',
-  },
-  {
-    id: 3,
-    name: 'Isapre',
-  },
-];
-
-const especialidad = [
-  {
-    id: 1,
-    name: 'Medicina General',
-  },
-  {
-    id: 2,
-    name: 'Oftalmologia',
-  },
-  {
-    id: 3,
-    name: 'Radiologia',
-  },
-];
+interface PatientFormProps {
+  fillBookingData: (data: Partial<Booking>) => void;
+  handleStep: (step: number) => void;
+}
 
 export const PatientForm = ({
   fillBookingData,
@@ -69,9 +27,9 @@ export const PatientForm = ({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<FormFields>();
+  } = useForm<PatientFormFields>();
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const onSubmit: SubmitHandler<PatientFormFields> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     fillBookingData(data);
     handleStep(2);
@@ -101,21 +59,21 @@ export const PatientForm = ({
         placeholder='Centro de salud'
         register={register}
         errors={errors}
-        options={centrosSalud}
+        options={data.centrosSalud}
       />
       <Select
         name='prevision'
         placeholder='Previsión'
         register={register}
         errors={errors}
-        options={prevision}
+        options={data.prevision}
       />
       <Select
         name='area'
         placeholder='Especialidad'
         register={register}
         errors={errors}
-        options={especialidad}
+        options={data.especialidad}
       />
 
       <SubmitButton text={'Continuar'} isSubmitting={isSubmitting} />
