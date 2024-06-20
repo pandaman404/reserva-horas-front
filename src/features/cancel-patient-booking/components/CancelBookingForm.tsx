@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import TextField from '@/components/forms/TextField';
 import SubmitButton from '@/components/forms/SubmitButton';
 import { Rut } from '@/@types/user';
+import { validateRutFormat } from '@/utils/validateRut';
 
 type FormFields = {
   rut: Rut;
@@ -21,15 +22,16 @@ export const CancelBookingForm = () => {
 
   return (
     <form
-      className='mx-auto flex w-full max-w-lg flex-col gap-4 p-5 md:p-10'
+      className='mx-auto flex w-full max-w-lg flex-col gap-9 p-5 md:p-10'
       onSubmit={handleSubmit(onSubmit)}
     >
       <TextField
         type='text'
         name='rut'
-        placeholder='111111-1'
+        placeholder='11111111-1'
         register={register}
         errors={errors}
+        fnCustomValidation={validateRutFormat}
       />
       <SubmitButton
         text='Buscar horas reservadas'

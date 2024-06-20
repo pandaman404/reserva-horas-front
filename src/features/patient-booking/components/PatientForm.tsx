@@ -5,6 +5,7 @@ import TextField from '@/components/forms/TextField';
 import data from '@/mocks/select.json';
 import { Rut } from '@/@types/user';
 import { Booking } from '@/@types/booking';
+import { validateRutFormat } from '@/utils/validateRut';
 
 type PatientFormFields = {
   rut: Rut;
@@ -43,9 +44,10 @@ export const PatientForm = ({
       <TextField
         type='text'
         name='rut'
-        placeholder='111111-1'
+        placeholder='11111111-1'
         register={register}
         errors={errors}
+        fnCustomValidation={validateRutFormat}
       />
       <TextField
         type='email'

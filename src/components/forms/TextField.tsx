@@ -13,6 +13,7 @@ type TextFieldProps<T extends FieldValues> = {
   placeholder?: string;
   register: UseFormRegister<T>;
   errors: FieldErrors<T>;
+  fnCustomValidation?: (value: string) => boolean | string;
 };
 
 const TextField = <T extends FieldValues>({
@@ -21,6 +22,7 @@ const TextField = <T extends FieldValues>({
   placeholder,
   register,
   errors,
+  fnCustomValidation,
 }: TextFieldProps<T>) => {
   const capitalizeName = capitalizeText(name);
 
@@ -33,6 +35,12 @@ const TextField = <T extends FieldValues>({
         placeholder={placeholder}
         {...register(name, {
           required: `${capitalizeName} es requerido`,
+          validate: (fieldValue) => {
+            if (fnCustomValidation) {
+              return fnCustomValidation(fieldValue);
+            }
+            return true;
+          },
         })}
       />
       {errors[name] && (
