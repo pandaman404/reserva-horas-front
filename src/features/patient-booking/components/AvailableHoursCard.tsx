@@ -1,5 +1,4 @@
 import { Appointment } from '@/@types/booking';
-import { v4 as uuidv4 } from 'uuid';
 
 interface AvailableHoursCardProps extends Appointment {
   handleSelectedAppointment: (data: Partial<Appointment>) => void;
@@ -30,7 +29,7 @@ export const AvailableHoursCard = ({
         {availableHours.map((availableHour: string) => {
           return (
             <button
-              key={uuidv4()}
+              key={crypto.randomUUID()}
               className='flex w-full justify-between rounded bg-secondary px-5 py-2 text-base-100'
               onClick={() =>
                 handleSelectedAppointment({

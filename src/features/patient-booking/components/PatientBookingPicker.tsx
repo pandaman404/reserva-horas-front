@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { getValuesFromDate } from '@/utils/format';
 import { AvailableHoursCard } from '@/features/patient-booking/components/AvailableHoursCard';
 import { Calendar } from '@/features/patient-booking/components/Calendar';
@@ -43,7 +42,7 @@ export const PatientBookingPicker = ({
               <AvailableHoursCard
                 {...appointment}
                 handleSelectedAppointment={handleSelectedAppointment}
-                key={uuidv4()}
+                key={crypto.randomUUID()}
               />
             );
           })}

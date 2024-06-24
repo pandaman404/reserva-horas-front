@@ -4,7 +4,6 @@ import {
   Path,
   UseFormRegister,
 } from 'react-hook-form';
-import { v4 as uuidv4 } from 'uuid';
 
 type SelectProps<T extends FieldValues> = {
   name: Path<T>;
@@ -40,7 +39,7 @@ const Select = <T extends FieldValues>({
         </option>
         {options.map(({ name }) => {
           return (
-            <option key={uuidv4()} value={name}>
+            <option key={crypto.randomUUID()} value={name}>
               {name}
             </option>
           );
