@@ -1,4 +1,4 @@
-import UmbrellaIcon from '@/components/ui/UmbrellaIcon';
+import UmbrellaIcon from '@/components/icons/UmbrellaIcon';
 
 const Logo = () => {
   return (

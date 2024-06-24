@@ -1,4 +1,4 @@
-import { CalendarIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon } from '@/components/icons/CalendarIcon';
 import { getValuesFromDate } from '@/utils/format';
 import { StepBackButton } from '@/features/patient-booking/components/StepBackButton';
 import { Booking } from '@/@types/booking';
@@ -22,7 +22,7 @@ export const ConfirmBooking = ({
   return (
     <div className='mx-auto flex max-w-3xl flex-col flex-wrap items-center justify-center gap-5 rounded-md border  p-5 md:flex-row'>
       <div className='relative w-60'>
-        <CalendarIcon height={240} width={240} className='stroke-accent' />
+        <CalendarIcon size={240} />
         <p className='absolute left-1/2 top-[62px] -translate-x-1/2 text-sm font-black uppercase'>
           {month}
         </p>
