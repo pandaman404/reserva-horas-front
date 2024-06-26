@@ -1,11 +1,11 @@
 import { PatientForm } from '@/features/patient-booking/components/PatientForm';
-// import { PatientBookingPicker } from '@/features/patient-booking/components/PatientBookingPicker';
+import { PatientBookingPicker } from '@/features/patient-booking/components/PatientBookingPicker';
 // import { ConfirmBooking } from '@/features/patient-booking/components/ConfirmBooking';
 import { BookingSteps } from '@/features/patient-booking/components/BookingSteps';
 import { useNewBooking } from './hooks/useNewBooking';
 
 const PatientBookingPage = () => {
-  const { modifyPatientBooking, step, goToNextStep } = useNewBooking();
+  const { patientBooking, modifyPatientBooking, step, goToPreviousStep, goToNextStep } = useNewBooking();
 
   return (
     <main className='flex-1'>
@@ -17,9 +17,13 @@ const PatientBookingPage = () => {
         {step === 1 ? (
           <PatientForm modifyPatientBooking={modifyPatientBooking} goToNextStep={goToNextStep} />
         ) : step === 2 ? (
-          <p>step2</p>
+          <PatientBookingPicker
+            patientBooking={patientBooking}
+            modifyPatientBooking={modifyPatientBooking}
+            goToPreviousStep={goToPreviousStep}
+            goToNextStep={goToNextStep}
+          />
         ) : (
-          // <PatientBookingPicker fillBookingData={fillBookingData} handleStep={handleStep} />
           <p>step3</p>
           // <ConfirmBooking booking={booking} createNewBooking={createNewBooking} handleStep={handleStep} />
         )}

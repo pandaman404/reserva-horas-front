@@ -1,38 +1,54 @@
+import { type PatientBooking } from '@/@types/booking';
 import { getValuesFromDate } from '@/utils/format';
 import { AvailableHoursCard } from '@/features/patient-booking/components/AvailableHoursCard';
 import { Calendar } from '@/features/patient-booking/components/Calendar';
 import { StepBackButton } from '@/features/patient-booking/components/StepBackButton';
-import { useBookingCalendar } from '@/features/patient-booking/hooks/useBookingCalendar';
-import { Booking } from '@/@types/booking';
+import { useNewBookingStep2 } from '../hooks/useNewBookingStep2';
+import { Loader } from '@/components/ui/Loader';
+import { ErrorMessage } from '@/components/ui/ErrorMessage';
 
 interface PatientBookingPickerProps {
-  fillBookingData: (data: Partial<Booking>) => void;
-  handleStep: (step: number) => void;
+  patientBooking: PatientBooking;
+  modifyPatientBooking: (data: Partial<PatientBooking>) => void;
+  goToPreviousStep: () => void;
+  goToNextStep: () => void;
 }
 
 export const PatientBookingPicker = ({
-  fillBookingData,
-  handleStep,
+  patientBooking,
+  modifyPatientBooking,
+  goToPreviousStep,
+  goToNextStep,
 }: PatientBookingPickerProps) => {
   const {
-    availableDays,
-    availableAppointments,
     selectedCalendarDay,
+    availableCalendarDays,
     handleSelectedCalendarDay,
-    handleSelectedAppointment,
-  } = useBookingCalendar(fillBookingData, handleStep);
+    availableAppointments,
+    isLoading,
+    isError,
+  } = useNewBookingStep2(patientBooking, modifyPatientBooking, goToNextStep);
 
-  return (
+  return isLoading ? (
+    <div className='relative top-32 mt-20'>
+      <Loader />
+    </div>
+  ) : !isLoading && (isError || availableAppointments.length === 0) ? (
+    <div className='relative top-32 mt-20 flex flex-col gap-5'>
+      <ErrorMessage text='No se han encontrado horas disponibles' />
+      <StepBackButton goToPreviousStep={goToPreviousStep} />
+    </div>
+  ) : (
     <div className='mx-auto flex w-full flex-col items-center gap-5 lg:flex-row lg:items-start lg:gap-10'>
       <div>
-        <StepBackButton previousStep={1} handleStep={handleStep} />
+        <StepBackButton goToPreviousStep={goToPreviousStep} />
         <Calendar
           selectedCalendarDay={selectedCalendarDay}
           handleSelectedCalendarDay={handleSelectedCalendarDay}
-          availableDays={availableDays}
+          availableDays={availableCalendarDays}
         />
       </div>
-      {selectedCalendarDay && (
+      {/* {selectedCalendarDay && (
         <div className='w-full'>
           <h2 className='w-full rounded bg-primary px-2 py-3 text-center text-lg font-semibold uppercase tracking-widest text-base-100'>
             {`${getValuesFromDate(selectedCalendarDay).dayOfMonth} de ${getValuesFromDate(selectedCalendarDay).month}`}
@@ -47,7 +63,7 @@ export const PatientBookingPicker = ({
             );
           })}
         </div>
-      )}
+      )} */}
     </div>
   );
 };

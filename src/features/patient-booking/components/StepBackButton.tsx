@@ -1,17 +1,10 @@
 interface StepBackButtonProps {
-  previousStep: number;
-  handleStep: (step: number) => void;
+  goToPreviousStep: () => void;
 }
 
-export const StepBackButton = ({
-  previousStep,
-  handleStep,
-}: StepBackButtonProps) => {
+export const StepBackButton = ({ goToPreviousStep }: StepBackButtonProps) => {
   return (
-    <button
-      className='uppercase text-secondary'
-      onClick={() => handleStep(previousStep)}
-    >
+    <button className='uppercase text-secondary' onClick={() => goToPreviousStep}>
       &lt; Volver
     </button>
   );

@@ -2,13 +2,13 @@ import { PatientBooking } from '@/@types/booking';
 import { useEffect, useState } from 'react';
 
 export function useNewBooking() {
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(2);
   const [patientBooking, setPatientBooking] = useState<PatientBooking>({
-    rut: '',
-    email: '',
-    healthInsurance: '',
-    medicalCenter: '',
-    specialty: '',
+    rut: '19635606-1',
+    email: 'awesker@umbrella.org',
+    healthInsurance: 'PREV001',
+    medicalCenter: 'CENTER001',
+    specialty: 'ESP002',
     doctor: '',
     appointment: null,
   });

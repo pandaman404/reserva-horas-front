@@ -6,6 +6,8 @@ import SubmitButton from '@/components/forms/SubmitButton';
 import TextField from '@/components/forms/TextField';
 import { validateRutFormat } from '@/utils/validateRut';
 import { useNewBookingStep1 } from '../hooks/useNewBookingStep1';
+import { Loader } from '@/components/ui/Loader';
+import { ErrorMessage } from '@/components/ui/ErrorMessage';
 
 interface PatientFormProps {
   modifyPatientBooking: (data: Partial<PatientBooking>) => void;
@@ -21,17 +23,17 @@ export const PatientForm = ({ modifyPatientBooking, goToNextStep }: PatientFormP
     formState: { errors, isSubmitting },
   } = useForm<PatientFormFields>();
 
-  if ((isLoading && !isError) || Object.keys(patientFormOptions).length === 0) {
-    return <p>Cargando....</p>;
-  }
-
-  if ((!isLoading && isError) || Object.keys(patientFormOptions).length === 0) {
-    return <p>ups! ha ocurrido un error</p>;
-  }
-
   const { medicalCenters, healthInsurances, specialties } = patientFormOptions;
 
-  return (
+  return isLoading ? (
+    <div className='relative top-32 mt-20'>
+      <Loader />
+    </div>
+  ) : isError || Object.keys(patientFormOptions).length === 0 ? (
+    <div className='relative top-32 mt-20'>
+      <ErrorMessage text='Ups! ha ocurrido un error.' />
+    </div>
+  ) : (
     <form
       className='mx-auto flex w-full max-w-3xl flex-col gap-8 rounded-md border p-5 md:p-10'
       onSubmit={handleSubmit(onSubmit)}

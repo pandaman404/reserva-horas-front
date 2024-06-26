@@ -8,13 +8,10 @@ export interface CalendarProps {
   handleSelectedCalendarDay: (day: Date) => void;
 }
 
-export const Calendar = ({
-  availableDays,
-  selectedCalendarDay,
-  handleSelectedCalendarDay,
-}: CalendarProps) => {
+export const Calendar = ({ availableDays, selectedCalendarDay, handleSelectedCalendarDay }: CalendarProps) => {
   const handleDayClick: DayMouseEventHandler = (day, { available }) => {
     if (available) {
+      console.log(day);
       handleSelectedCalendarDay(day);
     }
   };
@@ -24,7 +21,7 @@ export const Calendar = ({
       mode='single'
       locale={es}
       selected={selectedCalendarDay}
-      disabled={{ before: new Date() }}
+      disabled={{ before: availableDays[0] }}
       modifiers={{ available: availableDays }}
       modifiersClassNames={{ available: 'available-day' }}
       onDayClick={handleDayClick}
