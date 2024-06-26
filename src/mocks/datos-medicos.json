@@ -1,0 +1,125 @@
+{
+  "centrosSalud": [
+    {
+      "id": "CENTER001",
+      "nombre": "Raccoon City",
+      "direccion": "123 Elm Street, Raccoon City"
+    },
+    {
+      "id": "CENTER002",
+      "nombre": "Los Santos",
+      "direccion": "456 Grove Street, Los Santos"
+    },
+    {
+      "id": "CENTER003",
+      "nombre": "Pueblo Paleta",
+      "direccion": "789 Route 1, Pueblo Paleta"
+    },
+    {
+      "id": "CENTER004",
+      "nombre": "Silent Hill",
+      "direccion": "666 Lakeside Drive, Silent Hill"
+    },
+    {
+      "id": "CENTER005",
+      "nombre": "Gotham General Hospital",
+      "direccion": "123 Arkham Street, Gotham City"
+    }
+  ],
+  "prevision": [
+    {
+      "id": "PREV001",
+      "nombre": "Fonasa"
+    },
+    {
+      "id": "PREV002",
+      "nombre": "Particular"
+    },
+    {
+      "id": "PREV003",
+      "nombre": "Isapre"
+    }
+  ],
+  "especialidad": [
+    {
+      "id": "ESP001",
+      "nombre": "Medicina Interna"
+    },
+    {
+      "id": "ESP002",
+      "nombre": "Pediatría"
+    },
+    {
+      "id": "ESP003",
+      "nombre": "Cirugía General"
+    },
+    {
+      "id": "ESP004",
+      "nombre": "Ginecología y Obstetricia"
+    },
+    {
+      "id": "ESP005",
+      "nombre": "Ortopedia y Traumatología"
+    },
+    {
+      "id": "ESP006",
+      "nombre": "Cardiología"
+    },
+    {
+      "id": "ESP007",
+      "nombre": "Neurología"
+    },
+    {
+      "id": "ESP008",
+      "nombre": "Dermatología"
+    },
+    {
+      "id": "ESP009",
+      "nombre": "Oftalmología"
+    },
+    {
+      "id": "ESP010",
+      "nombre": "Otorrinolaringología"
+    },
+    {
+      "id": "ESP011",
+      "nombre": "Endocrinología"
+    },
+    {
+      "id": "ESP012",
+      "nombre": "Urología"
+    },
+    {
+      "id": "ESP013",
+      "nombre": "Psiquiatría"
+    },
+    {
+      "id": "ESP014",
+      "nombre": "Neurocirugía"
+    },
+    {
+      "id": "ESP015",
+      "nombre": "Radiología"
+    },
+    {
+      "id": "ESP016",
+      "nombre": "Anestesiología"
+    },
+    {
+      "id": "ESP017",
+      "nombre": "Medicina Física y Rehabilitación"
+    },
+    {
+      "id": "ESP018",
+      "nombre": "Gastroenterología"
+    },
+    {
+      "id": "ESP019",
+      "nombre": "Oncología"
+    },
+    {
+      "id": "ESP020",
+      "nombre": "Nefrología"
+    }
+  ]
+}

@@ -1,40 +1,35 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { type PatientBooking } from '@/@types/booking';
+import { type PatientFormFields } from '../types/patientFormFields';
+import { useForm } from 'react-hook-form';
 import Select from '@/components/forms/Select';
 import SubmitButton from '@/components/forms/SubmitButton';
 import TextField from '@/components/forms/TextField';
-import data from '@/mocks/select.json';
-import { Rut } from '@/@types/user';
-import { Booking } from '@/@types/booking';
 import { validateRutFormat } from '@/utils/validateRut';
-
-type PatientFormFields = {
-  rut: Rut;
-  email: string;
-  prevision: string;
-  medicalCenter: string;
-  area: string;
-};
+import { useNewBookingStep1 } from '../hooks/useNewBookingStep1';
 
 interface PatientFormProps {
-  fillBookingData: (data: Partial<Booking>) => void;
-  handleStep: (step: number) => void;
+  modifyPatientBooking: (data: Partial<PatientBooking>) => void;
+  goToNextStep: () => void;
 }
 
-export const PatientForm = ({
-  fillBookingData,
-  handleStep,
-}: PatientFormProps) => {
+export const PatientForm = ({ modifyPatientBooking, goToNextStep }: PatientFormProps) => {
+  const { patientFormOptions, isLoading, isError, onSubmit } = useNewBookingStep1(modifyPatientBooking, goToNextStep);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<PatientFormFields>();
 
-  const onSubmit: SubmitHandler<PatientFormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    fillBookingData(data);
-    handleStep(2);
-  };
+  if ((isLoading && !isError) || Object.keys(patientFormOptions).length === 0) {
+    return <p>Cargando....</p>;
+  }
+
+  if ((!isLoading && isError) || Object.keys(patientFormOptions).length === 0) {
+    return <p>ups! ha ocurrido un error</p>;
+  }
+
+  const { medicalCenters, healthInsurances, specialties } = patientFormOptions;
 
   return (
     <form
@@ -49,34 +44,22 @@ export const PatientForm = ({
         errors={errors}
         fnCustomValidation={validateRutFormat}
       />
-      <TextField
-        type='email'
-        name='email'
-        placeholder='awesker@umbrella.org'
-        register={register}
-        errors={errors}
-      />
+      <TextField type='email' name='email' placeholder='awesker@umbrella.org' register={register} errors={errors} />
       <Select
         name='medicalCenter'
         placeholder='Centro de salud'
         register={register}
         errors={errors}
-        options={data.centrosSalud}
+        options={medicalCenters}
       />
       <Select
-        name='prevision'
+        name='healthInsurance'
         placeholder='Previsión'
         register={register}
         errors={errors}
-        options={data.prevision}
+        options={healthInsurances}
       />
-      <Select
-        name='area'
-        placeholder='Especialidad'
-        register={register}
-        errors={errors}
-        options={data.especialidad}
-      />
+      <Select name='specialty' placeholder='Especialidad' register={register} errors={errors} options={specialties} />
 
       <SubmitButton text={'Continuar'} isSubmitting={isSubmitting} />
     </form>

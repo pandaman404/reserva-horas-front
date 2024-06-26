@@ -1,36 +1,27 @@
 import { PatientForm } from '@/features/patient-booking/components/PatientForm';
-import { PatientBookingPicker } from '@/features/patient-booking/components/PatientBookingPicker';
-import { ConfirmBooking } from '@/features/patient-booking/components/ConfirmBooking';
+// import { PatientBookingPicker } from '@/features/patient-booking/components/PatientBookingPicker';
+// import { ConfirmBooking } from '@/features/patient-booking/components/ConfirmBooking';
 import { BookingSteps } from '@/features/patient-booking/components/BookingSteps';
-import { useHandleBooking } from '@/features/patient-booking/hooks/useHandleBooking';
+import { useNewBooking } from './hooks/useNewBooking';
 
 const PatientBookingPage = () => {
-  const { booking, fillBookingData, step, handleStep, createNewBooking } =
-    useHandleBooking();
+  const { modifyPatientBooking, step, goToNextStep } = useNewBooking();
 
   return (
     <main className='flex-1'>
       <h2 className='relative bg-neutral p-4 text-center text-lg font-semibold uppercase tracking-widest text-white'>
         Reserva de horas
       </h2>
-      <div className='container mx-auto my-10 flex min-h-[75vh] flex-col items-center gap-5 px-3 lg:my-20 lg:gap-10 xl:px-0'>
+      <div className='container mx-auto my-10 flex min-h-[75vh] flex-col items-center gap-5 px-3 lg:my-20 xl:px-0'>
         <BookingSteps currentStep={step} />
         {step === 1 ? (
-          <PatientForm
-            fillBookingData={fillBookingData}
-            handleStep={handleStep}
-          />
+          <PatientForm modifyPatientBooking={modifyPatientBooking} goToNextStep={goToNextStep} />
         ) : step === 2 ? (
-          <PatientBookingPicker
-            fillBookingData={fillBookingData}
-            handleStep={handleStep}
-          />
+          <p>step2</p>
         ) : (
-          <ConfirmBooking
-            booking={booking}
-            createNewBooking={createNewBooking}
-            handleStep={handleStep}
-          />
+          // <PatientBookingPicker fillBookingData={fillBookingData} handleStep={handleStep} />
+          <p>step3</p>
+          // <ConfirmBooking booking={booking} createNewBooking={createNewBooking} handleStep={handleStep} />
         )}
       </div>
     </main>

@@ -11,6 +11,7 @@ type SelectProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
   errors: FieldErrors<T>;
   options: {
+    id: string;
     name: string;
   }[];
 };
@@ -37,9 +38,9 @@ const Select = <T extends FieldValues>({
         <option disabled value={DEFAULT_VALUE}>
           {placeholder}
         </option>
-        {options.map(({ name }) => {
+        {options.map(({ id, name }) => {
           return (
-            <option key={crypto.randomUUID()} value={name}>
+            <option key={id} value={id} onClick={() => console.log(id)}>
               {name}
             </option>
           );

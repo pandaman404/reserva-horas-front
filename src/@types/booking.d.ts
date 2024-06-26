@@ -1,11 +1,11 @@
-import { Rut } from './user';
+import { type Rut } from './user';
 
-export interface Booking {
+export interface PatientBooking {
   rut: Rut;
   email: string;
-  prevision: string;
+  healthInsurance: string;
   medicalCenter: string;
-  area: string;
+  specialty: string;
   doctor: string;
   appointment: Date | null;
 }
