@@ -21,12 +21,15 @@ export const getAvailableAppointmentsByParams = async (
     const { record }: ApiResponseAppointments = response.data;
 
     const availableAppointments: Appointment[] = [];
+    const currentDate = new Date();
 
     for (const appointment of record.appointments) {
       if (appointment.available && appointment.specialty === specialty && appointment.medicalCenter === medicalCenter) {
         appointment.created_at = new Date(appointment.created_at);
         appointment.day = new Date(appointment.day);
-        availableAppointments.push(appointment);
+        if (appointment.day >= currentDate) {
+          availableAppointments.push(appointment);
+        }
       }
     }
 

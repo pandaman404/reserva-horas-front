@@ -1,11 +1,6 @@
+import { capitalizeText } from '@/utils/capitalizeText';
 import { HTMLInputTypeAttribute } from 'react';
-import {
-  FieldValues,
-  UseFormRegister,
-  Path,
-  FieldErrors,
-} from 'react-hook-form';
-import { capitalizeText } from '@/utils/format';
+import { FieldValues, UseFormRegister, Path, FieldErrors } from 'react-hook-form';
 
 type TextFieldProps<T extends FieldValues> = {
   type: HTMLInputTypeAttribute;
@@ -44,9 +39,7 @@ const TextField = <T extends FieldValues>({
         })}
       />
       {errors[name] && (
-        <div className='absolute -bottom-6 left-2 text-sm text-error'>
-          {errors[name]?.message?.toString()}
-        </div>
+        <div className='absolute -bottom-6 left-2 text-sm text-error'>{errors[name]?.message?.toString()}</div>
       )}
     </label>
   );

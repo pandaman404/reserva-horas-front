@@ -1,4 +1,3 @@
-import { type PatientBooking } from '@/@types/booking';
 import { type PatientFormFields } from '../types/patientFormFields';
 import { useForm } from 'react-hook-form';
 import Select from '@/components/forms/Select';
@@ -6,16 +5,9 @@ import SubmitButton from '@/components/forms/SubmitButton';
 import TextField from '@/components/forms/TextField';
 import { validateRutFormat } from '@/utils/validateRut';
 import { useNewBookingStep1 } from '../hooks/useNewBookingStep1';
-import { Loader } from '@/components/ui/Loader';
-import { ErrorMessage } from '@/components/ui/ErrorMessage';
 
-interface PatientFormProps {
-  modifyPatientBooking: (data: Partial<PatientBooking>) => void;
-  goToNextStep: () => void;
-}
-
-export const PatientForm = ({ modifyPatientBooking, goToNextStep }: PatientFormProps) => {
-  const { patientFormOptions, isLoading, isError, onSubmit } = useNewBookingStep1(modifyPatientBooking, goToNextStep);
+export const PatientForm = () => {
+  const { medicalCenters, healthInsurances, specialties, onSubmit } = useNewBookingStep1();
 
   const {
     register,
@@ -23,17 +15,7 @@ export const PatientForm = ({ modifyPatientBooking, goToNextStep }: PatientFormP
     formState: { errors, isSubmitting },
   } = useForm<PatientFormFields>();
 
-  const { medicalCenters, healthInsurances, specialties } = patientFormOptions;
-
-  return isLoading ? (
-    <div className='relative top-32 mt-20'>
-      <Loader />
-    </div>
-  ) : isError || Object.keys(patientFormOptions).length === 0 ? (
-    <div className='relative top-32 mt-20'>
-      <ErrorMessage text='Ups! ha ocurrido un error.' />
-    </div>
-  ) : (
+  return (
     <form
       className='mx-auto flex w-full max-w-3xl flex-col gap-8 rounded-md border p-5 md:p-10'
       onSubmit={handleSubmit(onSubmit)}
@@ -52,16 +34,16 @@ export const PatientForm = ({ modifyPatientBooking, goToNextStep }: PatientFormP
         placeholder='Centro de salud'
         register={register}
         errors={errors}
-        options={medicalCenters}
+        options={medicalCenters!}
       />
       <Select
         name='healthInsurance'
         placeholder='Previsión'
         register={register}
         errors={errors}
-        options={healthInsurances}
+        options={healthInsurances!}
       />
-      <Select name='specialty' placeholder='Especialidad' register={register} errors={errors} options={specialties} />
+      <Select name='specialty' placeholder='Especialidad' register={register} errors={errors} options={specialties!} />
 
       <SubmitButton text={'Continuar'} isSubmitting={isSubmitting} />
     </form>

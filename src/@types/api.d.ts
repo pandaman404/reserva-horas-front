@@ -1,7 +1,15 @@
 import { type Appointment } from './appointment';
+import { type Doctor } from './doctor';
 import { type HealthInsurance } from './healthInsurance';
 import { type MedicalCenter } from './medicalCenter';
 import { type MedicalSpecialty } from './medicalSpecialty';
+
+export interface Metadata {
+  id: string;
+  private: boolean;
+  createdAt: Date;
+  name: string;
+}
 
 export interface ApiResponseMedicalData {
   record: {
@@ -19,9 +27,9 @@ export interface ApiResponseAppointments {
   metadata: Metadata;
 }
 
-export interface Metadata {
-  id: string;
-  private: boolean;
-  createdAt: Date;
-  name: string;
+export interface ApiResponseDoctors {
+  record: {
+    doctors: Doctor[];
+  };
+  metadata: Metadata;
 }

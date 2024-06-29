@@ -18,11 +18,11 @@ body {
   }
 
   .selected-day {
-    @apply bg-accent text-white !important;
+    @apply bg-warning text-white !important;
   }
 
   .available-day {
-    @apply bg-primary text-white;
+    @apply bg-secondary text-white;
   }
 
   .btn-primary,

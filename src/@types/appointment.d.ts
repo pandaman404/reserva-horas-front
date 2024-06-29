@@ -16,3 +16,12 @@ export interface Appointment {
 
 export type AppointmentId = string;
 export type Status = 'pending' | 'confirmed' | 'canceled';
+
+export interface AvailableAppointments {
+  doctorId: string;
+  doctorName: string;
+  doctorImage: string;
+  medicalCenter: string;
+  specialty: string;
+  appointments: Appointment[];
+}
