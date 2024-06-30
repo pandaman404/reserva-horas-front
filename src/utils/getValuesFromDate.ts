@@ -7,7 +7,7 @@ export function getValuesFromDate(date: Date) {
   const dayOfMonth = format(date, 'd', { locale: es });
   const month = format(date, 'MMMM', { locale: es });
   const year = format(date, 'yyyy', { locale: es });
-  const hourAndMinutes = `${getHours(date)}:${getMinutes(date) <= 9 ? '0' + getMinutes(date) : getMinutes(date)}`;
+  const hourAndMinutes = `${getHours(date) <= 9 ? '0' + getHours(date) : getHours(date)}:${getMinutes(date) <= 9 ? '0' + getMinutes(date) : getMinutes(date)}`;
   return {
     dayOfWeek,
     dayOfMonth,

@@ -5,11 +5,32 @@ import { useNewBooking } from '../hooks/useNewBooking';
 export const NewBookingContext = createContext<NewBookingContextType>({} as NewBookingContextType);
 
 export const NewBookingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { newBooking, medicalData, step, isLoading, isError, goToPreviousStep, goToNextStep, modifyNewBooking } =
-    useNewBooking();
+  const {
+    newBooking,
+    medicalData,
+    step,
+    isLoading,
+    isError,
+    goToPreviousStep,
+    goToNextStep,
+    modifyNewBooking,
+    makeNewBooking,
+    resetNewBooking,
+  } = useNewBooking();
   return (
     <NewBookingContext.Provider
-      value={{ newBooking, medicalData, step, isLoading, isError, goToPreviousStep, goToNextStep, modifyNewBooking }}
+      value={{
+        newBooking,
+        medicalData,
+        step,
+        isLoading,
+        isError,
+        goToPreviousStep,
+        goToNextStep,
+        modifyNewBooking,
+        makeNewBooking,
+        resetNewBooking,
+      }}
     >
       {children}
     </NewBookingContext.Provider>

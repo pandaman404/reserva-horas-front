@@ -4,6 +4,7 @@ import { useNewBookingContext } from '../context/NewBookingContext';
 import { ErrorMessage } from '@/components/ui/ErrorMessage';
 import { PatientForm } from '../components/PatientForm';
 import { PatientBookingPicker } from '../components/PatientBookingPicker';
+import { ConfirmBooking } from '../components/ConfirmBooking';
 
 export const NewBookingLayout = () => {
   const { step, isLoading, isError, medicalData } = useNewBookingContext();
@@ -29,8 +30,7 @@ export const NewBookingLayout = () => {
         )}
         {!showLoader && !showError && step === 1 && <PatientForm />}
         {!showLoader && !showError && step === 2 && <PatientBookingPicker />}
-        {!showLoader && !showError && step === 3 && <p>step3</p>}
-        {/* <ConfirmBooking booking={booking} createNewBooking={createNewBooking} handleStep={handleStep} /> */}
+        {!showLoader && !showError && (step === 3 || step === 4) && <ConfirmBooking />}
       </div>
     </main>
   );

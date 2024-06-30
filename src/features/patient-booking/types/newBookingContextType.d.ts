@@ -10,4 +10,6 @@ export interface NewBookingContextType {
   goToPreviousStep: () => void;
   goToNextStep: () => void;
   modifyNewBooking: (data: Partial<Appointment>) => void;
+  makeNewBooking: () => Promise<void>;
+  resetNewBooking: () => void;
 }
