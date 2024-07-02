@@ -1,4 +1,4 @@
-import { ApiResponseDoctors } from '@/@types/api';
+import { type ApiResponseDoctors } from '@/@types/api';
 import axios from 'axios';
 
 const baseUrl = 'https://api.jsonbin.io/v3/b/667c7334acd3cb34a85dcf4e';

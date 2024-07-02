@@ -8,23 +8,23 @@ type FormFields = {
   rut: Rut;
 };
 
-export const CancelBookingForm = () => {
+interface CancelBookingFormProps {
+  searchAppointments: (rut: string) => Promise<void>;
+}
+
+export const CancelBookingForm = ({ searchAppointments }: CancelBookingFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>();
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.log(data);
+  const onSubmit: SubmitHandler<FormFields> = ({ rut }) => {
+    searchAppointments(rut);
   };
 
   return (
-    <form
-      className='mx-auto flex w-full max-w-lg flex-col gap-9 p-5 md:p-10'
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className='mx-auto flex w-full max-w-lg flex-col gap-9 p-5 md:p-10' onSubmit={handleSubmit(onSubmit)}>
       <TextField
         type='text'
         name='rut'
@@ -33,10 +33,7 @@ export const CancelBookingForm = () => {
         errors={errors}
         fnCustomValidation={validateRutFormat}
       />
-      <SubmitButton
-        text='Buscar horas reservadas'
-        isSubmitting={isSubmitting}
-      />
+      <SubmitButton text='Buscar horas reservadas' isSubmitting={isSubmitting} />
     </form>
   );
 };
