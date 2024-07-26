@@ -1,0 +1,177 @@
+{
+  "medicalData": {
+    "data": {
+      "centers": [
+        {
+          "id": "CENTER001",
+          "name": "Raccoon City",
+          "address": "123 Elm Street, Raccoon City"
+        },
+        {
+          "id": "CENTER002",
+          "name": "Los Santos",
+          "address": "456 Grove Street, Los Santos"
+        },
+        {
+          "id": "CENTER003",
+          "name": "Pueblo Paleta",
+          "address": "789 Route 1, Pueblo Paleta"
+        },
+        {
+          "id": "CENTER004",
+          "name": "Silent Hill",
+          "address": "666 Lakeside Drive, Silent Hill"
+        },
+        {
+          "id": "CENTER005",
+          "name": "Gotham General Hospital",
+          "address": "123 Arkham Street, Gotham City"
+        }
+      ],
+      "doctors": [
+        {
+          "id": "DOC001",
+          "name": {
+            "first": "Rebecca",
+            "last": "Chambers"
+          },
+          "image": "https://thatarklayplace.com/wp-content/uploads/2020/11/RebeccaChambers_Vendetta.jpg",
+          "specialty": "Pediatría",
+          "medicalCenter": "Raccoon City"
+        },
+        {
+          "id": "DOC002",
+          "name": {
+            "first": "William",
+            "last": "Birkin"
+          },
+          "image": "https://www.residentevildatabase.com/wp-content/uploads/2023/12/william-birkin.jpg",
+          "specialty": "Pediatría",
+          "medicalCenter": "Raccoon City"
+        },
+        {
+          "id": "DOC003",
+          "name": {
+            "first": "Sammuel",
+            "last": "Oak"
+          },
+          "image": "https://cdn.costumewall.com/wp-content/uploads/2017/02/professor-oak.jpg",
+          "specialty": "Medicina Interna",
+          "medicalCenter": "Pueblo Paleta"
+        }
+      ],
+      "healthInsurances": [
+        {
+          "id": "PREV001",
+          "name": "Fonasa"
+        },
+        {
+          "id": "PREV002",
+          "name": "Particular"
+        },
+        {
+          "id": "PREV003",
+          "name": "Isapre"
+        }
+      ],
+      "specialties": [
+        {
+          "id": "ESP001",
+          "name": "Medicina Interna"
+        },
+        {
+          "id": "ESP002",
+          "name": "Pediatría"
+        },
+        {
+          "id": "ESP003",
+          "name": "Cirugía General"
+        },
+        {
+          "id": "ESP004",
+          "name": "Ginecología y Obstetricia"
+        },
+        {
+          "id": "ESP005",
+          "name": "Ortopedia y Traumatología"
+        },
+        {
+          "id": "ESP006",
+          "name": "Cardiología"
+        },
+        {
+          "id": "ESP007",
+          "name": "Neurología"
+        },
+        {
+          "id": "ESP008",
+          "name": "Dermatología"
+        },
+        {
+          "id": "ESP009",
+          "name": "Oftalmología"
+        },
+        {
+          "id": "ESP010",
+          "name": "Otorrinolaringología"
+        },
+        {
+          "id": "ESP011",
+          "name": "Endocrinología"
+        },
+        {
+          "id": "ESP012",
+          "name": "Urología"
+        },
+        {
+          "id": "ESP013",
+          "name": "Psiquiatría"
+        },
+        {
+          "id": "ESP014",
+          "name": "Neurocirugía"
+        },
+        {
+          "id": "ESP015",
+          "name": "Radiología"
+        },
+        {
+          "id": "ESP016",
+          "name": "Anestesiología"
+        },
+        {
+          "id": "ESP017",
+          "name": "Medicina Física y Rehabilitación"
+        },
+        {
+          "id": "ESP018",
+          "name": "Gastroenterología"
+        },
+        {
+          "id": "ESP019",
+          "name": "Oncología"
+        },
+        {
+          "id": "ESP020",
+          "name": "Nefrología"
+        }
+      ]
+    }
+  },
+  "appointmentBookings": {
+    "data": [
+      {
+        "id": 1,
+        "day": "2024-07-25T23:50:00.000Z",
+        "patientRut": null,
+        "patientEmail": null,
+        "patientHealthInsurance": null,
+        "center": "CENTER001",
+        "specialty": "ESP002",
+        "doctor": "DOC001",
+        "available": true,
+        "status": "pending"
+      }
+    ]
+  }
+}
