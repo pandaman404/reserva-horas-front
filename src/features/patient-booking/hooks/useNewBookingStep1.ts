@@ -4,7 +4,7 @@ import { SubmitHandler } from 'react-hook-form';
 
 export function useNewBookingStep1() {
   const { medicalData, modifyNewBooking, goToNextStep } = useNewBookingContext();
-  const { medicalCenters, healthInsurances, specialties } = medicalData;
+  const { centers, healthInsurances, specialties } = medicalData;
 
   const onSubmit: SubmitHandler<PatientFormFields> = (data) => {
     const {
@@ -20,7 +20,7 @@ export function useNewBookingStep1() {
 
   return {
     onSubmit,
-    medicalCenters,
+    centers,
     healthInsurances,
     specialties,
   };

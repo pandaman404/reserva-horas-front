@@ -1,13 +1,12 @@
-import { type Appointment } from '@/@types/appointment';
-import { type MedicalData } from '../types/medicalData';
+import type { MedicalData } from '@/@types/MedicalData';
+import type { AppointmentBooking } from '@/@types/AppointmentBooking';
 import { useEffect, useState } from 'react';
-import { getDoctors } from '../api/get-doctors';
-import { getMedicalData } from '../api/get-medical-data';
-import { putNewBooking } from '../api/put-new-booking';
 import { StatusCodes } from 'http-status-codes';
 import { toast } from 'sonner';
+import { getMedicalData } from '../api/get-medical-data';
+import { putPatientAppointmentBooking } from '../api/put-new-appointment-booking';
 
-const initialState: Appointment = {
+const initialState: AppointmentBooking = {
   id: '',
   patientRut: '',
   patientEmail: '',
@@ -16,19 +15,18 @@ const initialState: Appointment = {
   specialty: '',
   doctor: '',
   day: '',
-  available: true,
+  available: false,
   status: 'pending',
-  created_at: '',
 };
 
-export function useNewBooking() {
+export function useNewBookingAppointment() {
   const [medicalData, setMedicalData] = useState<MedicalData>({} as MedicalData);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
   const [step, setStep] = useState<number>(1);
-  const [newBooking, setNewBooking] = useState<Appointment>(initialState);
+  const [newBooking, setNewBooking] = useState<AppointmentBooking>(initialState);
 
-  const modifyNewBooking = (data: Partial<Appointment>): void => {
+  const modifyNewBooking = (data: Partial<AppointmentBooking>): void => {
     setNewBooking({ ...newBooking, ...data });
   };
 
@@ -36,7 +34,7 @@ export function useNewBooking() {
     setIsError(false);
     setIsLoading(true);
     try {
-      const response = await putNewBooking(newBooking);
+      const response = await putPatientAppointmentBooking(newBooking);
       if (response && response.status === StatusCodes.OK) {
         setStep(4);
         toast.success('Tu hora ha sido reservada con éxito.');
@@ -60,21 +58,15 @@ export function useNewBooking() {
     setIsError(false);
     setIsLoading(true);
     try {
-      const doctorsResponse = await getDoctors();
-      const medicalDataResponse = await getMedicalData();
+      const medicalData = await getMedicalData();
+      console.log(medicalData);
 
-      if (
-        doctorsResponse &&
-        doctorsResponse.length > 0 &&
-        medicalDataResponse &&
-        Object.keys(medicalDataResponse).length > 0
-      ) {
-        const newMedicalData: MedicalData = { ...medicalDataResponse, doctors: doctorsResponse };
-        setMedicalData(newMedicalData);
-        console.log(newMedicalData);
-      } else {
-        setIsError(true);
+      if (medicalData && Object.keys(medicalData).length > 0) {
+        setMedicalData(medicalData);
+        return;
       }
+
+      setIsError(true);
     } catch (error) {
       setIsError(true);
     } finally {

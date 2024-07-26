@@ -1,22 +1,12 @@
-import { type ApiResponseMedicalData } from '@/@types/api';
-import { StatusCodes } from 'http-status-codes';
-import axios from 'axios';
+import type { ApiResponseGetMedicalData } from '@/@types/api';
+import { axiosClient } from '@/lib/axios-client';
 
-const baseUrl = 'https://api.jsonbin.io/v3/b/6678dc50e41b4d34e4080747';
-const accessKey = '$2a$10$I.9CISo2jcSdHsEA7d3dgeoAQ9vo5e/87.NDsgyTgNpgcSSgdZzE.';
-
-export const getMedicalData = async () => {
+export async function getMedicalData() {
   try {
-    const response = await axios.get(baseUrl, {
-      headers: {
-        'X-ACCESS-KEY': accessKey,
-      },
-    });
-
-    const { record }: ApiResponseMedicalData = response.data;
-
-    return record;
+    const axiosResponse = await axiosClient.get('/medicalData');
+    const { data } = axiosResponse.data as ApiResponseGetMedicalData;
+    return data;
   } catch (error) {
-    // https://axios-http.com/docs/handling_errors
+    console.error(error);
   }
-};
+}

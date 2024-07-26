@@ -1,6 +1,6 @@
 import { type NewBookingContextType } from '../types/newBookingContextType';
 import { createContext, useContext } from 'react';
-import { useNewBooking } from '../hooks/useNewBooking';
+import { useNewBookingAppointment } from '../hooks/useNewBookingAppointment';
 
 export const NewBookingContext = createContext<NewBookingContextType>({} as NewBookingContextType);
 
@@ -16,7 +16,7 @@ export const NewBookingProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     modifyNewBooking,
     makeNewBooking,
     resetNewBooking,
-  } = useNewBooking();
+  } = useNewBookingAppointment();
   return (
     <NewBookingContext.Provider
       value={{

@@ -158,20 +158,66 @@
       ]
     }
   },
-  "appointmentBookings": {
-    "data": [
-      {
-        "id": 1,
-        "day": "2024-07-25T23:50:00.000Z",
-        "patientRut": null,
-        "patientEmail": null,
-        "patientHealthInsurance": null,
-        "center": "CENTER001",
-        "specialty": "ESP002",
-        "doctor": "DOC001",
-        "available": true,
-        "status": "pending"
-      }
-    ]
-  }
+  "appointmentBookings": [
+    {
+      "id": 1,
+      "day": "Thu Jul 25 2024 23:50:00 GMT-0400",
+      "patientRut": "19635606-1",
+      "patientEmail": null,
+      "patientHealthInsurance": null,
+      "medicalCenter": "CENTER001",
+      "specialty": "ESP002",
+      "doctor": "DOC001",
+      "available": true,
+      "status": "pending"
+    },
+    {
+      "id": 2,
+      "patientRut": "19635606-1",
+      "patientEmail": "hola@chao.cl",
+      "patientHealthInsurance": "PREV002",
+      "medicalCenter": "CENTER001",
+      "specialty": "ESP002",
+      "doctor": "DOC001",
+      "day": "2024-07-26T16:30:00.000Z",
+      "available": false,
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "day": "Fri Jul 26 2024 11:30:00 GMT-0400",
+      "patientRut": null,
+      "patientEmail": null,
+      "patientHealthInsurance": null,
+      "medicalCenter": "CENTER001",
+      "specialty": "ESP002",
+      "doctor": "DOC002",
+      "available": true,
+      "status": "pending"
+    },
+    {
+      "id": 4,
+      "day": "Fri Jul 26 2024 15:30:00 GMT-0400",
+      "patientRut": null,
+      "patientEmail": null,
+      "patientHealthInsurance": null,
+      "medicalCenter": "CENTER001",
+      "specialty": "ESP002",
+      "doctor": "DOC002",
+      "available": true,
+      "status": "pending"
+    },
+    {
+      "id": 5,
+      "day": "Fri Jul 26 2024 16:15:00 GMT-0400",
+      "patientRut": null,
+      "patientEmail": null,
+      "patientHealthInsurance": null,
+      "medicalCenter": "CENTER001",
+      "specialty": "ESP002",
+      "doctor": "DOC002",
+      "available": true,
+      "status": "pending"
+    }
+  ]
 }

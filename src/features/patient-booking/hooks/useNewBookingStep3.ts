@@ -20,9 +20,7 @@ export function useNewBookingStep3() {
     const { dayOfWeek, dayOfMonth, month, hourAndMinutes } = getValuesFromDate(new Date(newBooking.day));
     const doctor = medicalData.doctors?.find((doctor) => doctor.id === newBooking.doctor);
     const specialty = medicalData.specialties?.find((specialty) => specialty.id === newBooking.specialty);
-    const medicalCenter = medicalData.medicalCenters?.find(
-      (medicalCenter) => medicalCenter?.id === newBooking.medicalCenter,
-    );
+    const medicalCenter = medicalData.centers?.find((medicalCenter) => medicalCenter?.id === newBooking.medicalCenter);
 
     setbookingData({
       dayOfWeek,

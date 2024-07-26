@@ -1,15 +1,15 @@
-import { type Appointment } from '@/@types/appointment';
-import { type MedicalData } from './medicalData';
+import { type AppointmentBooking } from '@/@types/AppointmentBooking';
+import { type MedicalData } from '@/@types/MedicalData';
 
 export interface NewBookingContextType {
-  newBooking: Appointment;
+  newBooking: AppointmentBooking;
   step: number;
   medicalData: MedicalData;
   isLoading: boolean;
   isError: boolean;
   goToPreviousStep: () => void;
   goToNextStep: () => void;
-  modifyNewBooking: (data: Partial<Appointment>) => void;
+  modifyNewBooking: (data: Partial<AppointmentBooking>) => void;
   makeNewBooking: () => Promise<void>;
   resetNewBooking: () => void;
 }

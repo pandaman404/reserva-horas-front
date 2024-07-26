@@ -1,23 +1,24 @@
-import { type AvailableAppointments, type Appointment } from '@/@types/appointment';
-import { type Doctor } from '@/@types/doctor';
 import { useEffect, useState } from 'react';
-import { getAvailableAppointmentsByParams } from '../api/get-appointments';
-import { useNewBookingContext } from '../context/NewBookingContext';
 import { set } from 'date-fns';
+import type { AppointmentBooking } from '@/@types/AppointmentBooking';
+import type { AvailableAppointmentBookings } from '@/@types/AvailableAppointmentBookings';
+import type { Doctor } from '@/@types/Doctor';
+import { getAvailableAppointmentBookings } from '../api/get-appointment-booking';
+import { useNewBookingContext } from '../context/NewBookingContext';
 
 export function useNewBookingStep2() {
   const { newBooking, modifyNewBooking, goToPreviousStep, goToNextStep, medicalData } = useNewBookingContext();
-  const [availableAppointments, setAvailableAppointments] = useState<AvailableAppointments[]>([]);
+  const [availableAppointments, setAvailableAppointments] = useState<AvailableAppointmentBookings[]>([]);
   const [selectedCalendarDay, setSelectedCalendarDay] = useState<Date | null>(new Date());
   const [availableCalendarDays, setAvailableCalendarDays] = useState<Date[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const getAvailableAppointments = (appointments: Appointment[], doctors: Doctor[]): void => {
-    const availableAppointments: AvailableAppointments[] = [];
+  const formatAvailableAppointmentBookings = (appointmentBookings: AppointmentBooking[], doctors: Doctor[]): void => {
+    const availableAppointments: AvailableAppointmentBookings[] = [];
 
-    appointments.forEach((appointment) => {
-      const doctor = doctors.find((doctor) => doctor.id === appointment.doctor);
+    appointmentBookings.forEach((appointmentBooking) => {
+      const doctor = doctors.find((doctor) => doctor.id === appointmentBooking.doctor);
 
       if (doctor) {
         const index = availableAppointments.findIndex(
@@ -25,7 +26,7 @@ export function useNewBookingStep2() {
         );
 
         if (index != -1) {
-          availableAppointments[index].appointments.push(appointment);
+          availableAppointments[index].appointments.push(appointmentBooking);
           return;
         }
 
@@ -35,19 +36,19 @@ export function useNewBookingStep2() {
           doctorImage: doctor.image,
           medicalCenter: doctor.medicalCenter,
           specialty: doctor.specialty,
-          appointments: [appointment],
-        } as AvailableAppointments);
+          appointments: [appointmentBooking],
+        } as AvailableAppointmentBookings);
       }
     });
 
     setAvailableAppointments(availableAppointments);
   };
 
-  const getCalendarDays = (appointments: Appointment[]): void => {
+  const getCalendarDays = (appointmentBookings: AppointmentBooking[]): void => {
     const uniqueDates = new Set();
 
-    appointments.forEach((appointment) => {
-      const { day } = appointment;
+    appointmentBookings.forEach((appointmentBooking) => {
+      const { day } = appointmentBooking;
       if (day instanceof Date) {
         const dateWithoutTime = set(day, { hours: 0, minutes: 0, seconds: 0 }).toISOString();
         uniqueDates.add(dateWithoutTime);
@@ -64,23 +65,25 @@ export function useNewBookingStep2() {
     setSelectedCalendarDay(day);
   };
 
-  const handleSelectedAppointment = (appointment: Appointment): void => {
-    const selectedAppointment = { ...appointment };
-    selectedAppointment.patientRut = newBooking.patientRut;
-    selectedAppointment.patientEmail = newBooking.patientEmail;
-    selectedAppointment.patientHealthInsurance = newBooking.patientHealthInsurance;
-    modifyNewBooking(selectedAppointment);
+  const handleSelectedAppointment = (appointmentBooking: AppointmentBooking): void => {
+    const selectedAppointmentBooking = { ...appointmentBooking };
+    selectedAppointmentBooking.patientRut = newBooking.patientRut;
+    selectedAppointmentBooking.patientEmail = newBooking.patientEmail;
+    selectedAppointmentBooking.patientHealthInsurance = newBooking.patientHealthInsurance;
+    selectedAppointmentBooking.available = newBooking.available;
+    modifyNewBooking(selectedAppointmentBooking);
     goToNextStep();
   };
 
-  const loadDoctorsAndAppointments = async (specialty: string, medicalCenter: string): Promise<void> => {
+  const loadAvailableAppointmentBookings = async (specialty: string, medicalCenter: string): Promise<void> => {
     setIsError(false);
     setIsLoading(true);
     try {
-      const appointmentsRes = await getAvailableAppointmentsByParams(specialty, medicalCenter);
-      if (appointmentsRes && appointmentsRes.length > 0) {
-        getAvailableAppointments(appointmentsRes, medicalData.doctors!);
-        getCalendarDays(appointmentsRes);
+      const appointmentBookingsResponse = await getAvailableAppointmentBookings(specialty, medicalCenter);
+      console.log(appointmentBookingsResponse);
+      if (appointmentBookingsResponse && appointmentBookingsResponse.length > 0) {
+        formatAvailableAppointmentBookings(appointmentBookingsResponse, medicalData.doctors!);
+        getCalendarDays(appointmentBookingsResponse);
       } else {
         setIsError(true);
       }
@@ -92,7 +95,7 @@ export function useNewBookingStep2() {
   };
 
   useEffect(() => {
-    loadDoctorsAndAppointments(newBooking.specialty, newBooking.medicalCenter);
+    loadAvailableAppointmentBookings(newBooking.specialty, newBooking.medicalCenter);
   }, []);
 
   return {

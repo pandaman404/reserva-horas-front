@@ -7,7 +7,7 @@ import { validateRutFormat } from '@/utils/validateRut';
 import { useNewBookingStep1 } from '../hooks/useNewBookingStep1';
 
 export const PatientForm = () => {
-  const { medicalCenters, healthInsurances, specialties, onSubmit } = useNewBookingStep1();
+  const { centers, healthInsurances, specialties, onSubmit } = useNewBookingStep1();
 
   const {
     register,
@@ -34,7 +34,7 @@ export const PatientForm = () => {
         placeholder='Centro de salud'
         register={register}
         errors={errors}
-        options={medicalCenters!}
+        options={centers!}
       />
       <Select
         name='healthInsurance'

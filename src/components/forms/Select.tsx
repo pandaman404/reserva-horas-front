@@ -1,9 +1,4 @@
-import {
-  FieldErrors,
-  FieldValues,
-  Path,
-  UseFormRegister,
-} from 'react-hook-form';
+import { FieldErrors, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 type SelectProps<T extends FieldValues> = {
   name: Path<T>;
@@ -18,20 +13,14 @@ type SelectProps<T extends FieldValues> = {
 
 const DEFAULT_VALUE = 'DEFAULT';
 
-const Select = <T extends FieldValues>({
-  name,
-  placeholder,
-  register,
-  errors,
-  options,
-}: SelectProps<T>) => {
+const Select = <T extends FieldValues>({ name, placeholder, register, errors, options }: SelectProps<T>) => {
+  console.log(options);
   return (
     <div className='relative'>
       <select
         className='select select-bordered w-full'
         {...register(name, {
-          validate: (value) =>
-            value !== DEFAULT_VALUE || `${placeholder} es requerido`,
+          validate: (value) => value !== DEFAULT_VALUE || `${placeholder} es requerido`,
         })}
         defaultValue={DEFAULT_VALUE}
       >
@@ -47,9 +36,7 @@ const Select = <T extends FieldValues>({
         })}
       </select>
       {errors[name] && (
-        <div className='absolute -bottom-5 left-2 text-sm text-error'>
-          {errors[name]?.message?.toString()}
-        </div>
+        <div className='absolute -bottom-5 left-2 text-sm text-error'>{errors[name]?.message?.toString()}</div>
       )}
     </div>
   );
