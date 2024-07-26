@@ -173,14 +173,14 @@
     },
     {
       "id": 2,
-      "patientRut": "19635606-1",
-      "patientEmail": "hola@chao.cl",
-      "patientHealthInsurance": "PREV002",
+      "patientRut": "",
+      "patientEmail": "",
+      "patientHealthInsurance": "",
       "medicalCenter": "CENTER001",
       "specialty": "ESP002",
       "doctor": "DOC001",
       "day": "2024-07-26T16:30:00.000Z",
-      "available": false,
+      "available": true,
       "status": "pending"
     },
     {
@@ -197,13 +197,13 @@
     },
     {
       "id": 4,
-      "day": "Fri Jul 26 2024 15:30:00 GMT-0400",
-      "patientRut": null,
-      "patientEmail": null,
-      "patientHealthInsurance": null,
+      "patientRut": "",
+      "patientEmail": "",
+      "patientHealthInsurance": "",
       "medicalCenter": "CENTER001",
       "specialty": "ESP002",
       "doctor": "DOC002",
+      "day": "2024-07-26T19:30:00.000Z",
       "available": true,
       "status": "pending"
     },

@@ -24,8 +24,14 @@ export const CancelBookingLayout = () => {
           {!isLoading &&
             results &&
             results.length > 0 &&
-            results.map((appointment) => {
-              return <BookingCard key={crypto.randomUUID()} appointment={appointment} cancelBooking={cancelBooking} />;
+            results.map((appointmentBooking) => {
+              return (
+                <BookingCard
+                  key={crypto.randomUUID()}
+                  appointmentBooking={appointmentBooking}
+                  cancelBooking={cancelBooking}
+                />
+              );
             })}
         </div>
       </div>

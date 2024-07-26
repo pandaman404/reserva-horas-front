@@ -1,25 +1,16 @@
-import { type ApiResponseAppointments } from '@/@types/api';
-import { type Appointment } from '@/@types/appointment';
-import axios from 'axios';
-
-const baseUrl = 'https://api.jsonbin.io/v3/b/667c72caacd3cb34a85dcf2c';
-const accessKey = '$2a$10$I.9CISo2jcSdHsEA7d3dgeoAQ9vo5e/87.NDsgyTgNpgcSSgdZzE.';
+import { AppointmentBooking } from '@/@types/AppointmentBooking';
+import { axiosClient } from '@/lib/axios-client';
 
 export const getAppointmentsByRut = async (rut: string) => {
   try {
-    const response = await axios.get(baseUrl, {
-      headers: {
-        'X-ACCESS-KEY': accessKey,
-      },
-    });
+    const axiosResponse = await axiosClient.get('/appointmentBookings');
+    const data = axiosResponse.data as AppointmentBooking[];
 
-    const { record }: ApiResponseAppointments = response.data;
-    const patientAppointments: Appointment[] = [];
+    const patientAppointments: AppointmentBooking[] = [];
     const currentDate = new Date();
 
-    for (const appointment of record.appointments) {
+    for (const appointment of data) {
       if (appointment.patientRut === rut) {
-        appointment.created_at = new Date(appointment.created_at);
         appointment.day = new Date(appointment.day);
         if (appointment.day >= currentDate) {
           patientAppointments.push(appointment);

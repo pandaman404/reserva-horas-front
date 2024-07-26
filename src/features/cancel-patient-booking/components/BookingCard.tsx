@@ -1,13 +1,13 @@
-import { type Appointment } from '@/@types/appointment';
+import type { AppointmentBooking } from '@/@types/AppointmentBooking';
 import { getValuesFromDate } from '@/utils/getValuesFromDate';
 
 interface BookingCardProps {
-  appointment: Appointment;
-  cancelBooking: (appointmentId: string, rut: string) => Promise<void>;
+  appointmentBooking: AppointmentBooking;
+  cancelBooking: (appointmentBooking: AppointmentBooking) => Promise<void>;
 }
 
-export const BookingCard = ({ appointment, cancelBooking }: BookingCardProps) => {
-  const { day, doctor, specialty, medicalCenter, id, patientRut } = appointment;
+export const BookingCard = ({ appointmentBooking, cancelBooking }: BookingCardProps) => {
+  const { day, doctor, specialty, medicalCenter } = appointmentBooking;
   const { dayOfWeek, dayOfMonth, month, hourAndMinutes } = getValuesFromDate(new Date(day));
   return (
     <div className='mx-auto w-full max-w-lg overflow-hidden rounded'>
@@ -31,7 +31,7 @@ export const BookingCard = ({ appointment, cancelBooking }: BookingCardProps) =>
           <span className='font-bold'>Lugar:</span>
           <span>{medicalCenter}</span>
         </p>
-        <button onClick={() => cancelBooking(id, patientRut)} className='btn btn-warning mt-2 self-start'>
+        <button onClick={() => cancelBooking(appointmentBooking)} className='btn btn-warning mt-2 self-start'>
           Anular hora
         </button>
       </div>
